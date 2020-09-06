@@ -6,9 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Hidden from '@material-ui/core/Hidden';
-import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     card: {
@@ -28,23 +25,22 @@ export default function Post(props) {
 
     return (
         <Grid item xs={12} md={12}>
-            <CardActionArea >
+            <CardActionArea component="a" href={`/details/${post.id}`}>
                 <Card className={classes.card}>
                     <div className={classes.cardDetails}>
                         <CardContent>
-                            <Typography component="h2" variant="h5">
-                                {post.title}
-                            </Typography>
-                            <Typography variant="subtitle1" color="textSecondary">
-                                {post.date}
-                            </Typography>
-                            {/*<Typography variant="subtitle1" paragraph>*/}
-                            {/*    {post.description}*/}
-                            {/*</Typography>*/}
+                            {/*<Link variant="button" color="textPrimary" to={`/details/${post.id}`} className={classes.link}>*/}
 
-                                <Link variant="button" color="textPrimary" to={`/details/${post.id}`} className={classes.link}>
-                                    Continue Reading...
-                                </Link>
+                                <Typography component="h2" variant="h5">
+                                    {post.title}
+                                </Typography>
+
+                                <Typography variant="subtitle1" paragraph>
+                                    {post.body.substr(0, 100)}....
+                                </Typography>
+
+
+                                {/*</Link>*/}
 
                         </CardContent>
                     </div>
