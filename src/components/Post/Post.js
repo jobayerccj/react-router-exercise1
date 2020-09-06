@@ -8,6 +8,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     card: {
@@ -27,7 +28,7 @@ export default function Post(props) {
 
     return (
         <Grid item xs={12} md={12}>
-            <CardActionArea component="a" href="#">
+            <CardActionArea >
                 <Card className={classes.card}>
                     <div className={classes.cardDetails}>
                         <CardContent>
@@ -37,17 +38,19 @@ export default function Post(props) {
                             <Typography variant="subtitle1" color="textSecondary">
                                 {post.date}
                             </Typography>
-                            <Typography variant="subtitle1" paragraph>
-                                {post.description}
-                            </Typography>
-                            <Typography variant="subtitle1" color="primary">
-                                Continue reading...
-                            </Typography>
+                            {/*<Typography variant="subtitle1" paragraph>*/}
+                            {/*    {post.description}*/}
+                            {/*</Typography>*/}
+
+                                <Link variant="button" color="textPrimary" to={`/details/${post.id}`} className={classes.link}>
+                                    Continue Reading...
+                                </Link>
+
                         </CardContent>
                     </div>
-                    <Hidden xsDown>
-                        <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />
-                    </Hidden>
+                    {/*<Hidden xsDown>*/}
+                    {/*    <CardMedia className={classes.cardMedia} image={post.image} title={post.imageTitle} />*/}
+                    {/*</Hidden>*/}
                 </Card>
             </CardActionArea>
             <br/>

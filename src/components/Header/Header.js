@@ -2,8 +2,9 @@ import React from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
+
 import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -16,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
     link: {
         margin: theme.spacing(1, 1.5),
     },
-
-
 
 }));
 
@@ -32,15 +31,17 @@ const Header = () => {
                     Company name
                 </Typography>
                 <nav>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                        Features
+
+                    <Link variant="button" color="textPrimary" to="/" className={classes.link}>
+                        Home
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                        Enterprise
+                    <Link variant="button" color="textPrimary" to="/about" className={classes.link}>
+                        About
                     </Link>
-                    <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-                        Support
+                    <Link variant="button" color="textPrimary" to="/users" className={classes.link}>
+                        Users
                     </Link>
+
                 </nav>
 
             </Toolbar>

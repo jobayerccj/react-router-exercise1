@@ -1,15 +1,17 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
 // import StarIcon from '@material-ui/icons/StarBorder';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Header from "./components/Header/Header";
-import Posts from "./components/Posts/Posts";
-import Copyright from "./components/Copyright/Copyright";
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
+import About from "./components/About/About";
+import Users from "./components/Users/Users";
+import Home from "./components/Home/Home";
+import Detail from "./components/Detail/Detail";
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -50,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
 const footers = [
     {
         title: 'Company',
@@ -70,44 +71,35 @@ const footers = [
     },
 ];
 
-
 export default function App() {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
-            <CssBaseline />
-            <Header/>
-            <br/>
-            <br/>
+        <Router>
 
-            <Posts/>
+                {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+                <Switch>
+                    <Route path="/about">
+                        <About />
+                    </Route>
+                    <Route path="/users">
+                        <Users />
+                    </Route>
 
-            {/* Footer */}
-            <Container maxWidth="md" component="footer" className={classes.footer}>
-                <Grid container spacing={4} justify="space-evenly">
-                    {footers.map((footer) => (
-                        <Grid item xs={6} sm={3} key={footer.title}>
-                            <Typography variant="h6" color="textPrimary" gutterBottom>
-                                {footer.title}
-                            </Typography>
-                            <ul>
-                                {footer.description.map((item) => (
-                                    <li key={item}>
-                                        <Link href="#" variant="subtitle1" color="textSecondary">
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Grid>
-                    ))}
-                </Grid>
-                <Box mt={5}>
-                    <Copyright />
-                </Box>
-            </Container>
-            {/* End footer */}
-        </React.Fragment>
+                    <Route path="/details/:id">
+                        <Detail classes={classes} footers={footers}/>
+                    </Route>
+
+                    <Route path="/">
+                        <Home classes={classes} footers={footers}/>
+                    </Route>
+                </Switch>
+
+        </Router>
+
+
     );
 }
+
+
