@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
 const Comment = (props) => {
     const {detail} = props;
-    console.log(detail.body);
+    const [image, setImage] = useState("");
+
+    useEffect(() =>{
+
+        axios({
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/photos/' + detail.id
+        })
+        .then(function (response) {
+            setImage(response.data.thumbnailUrl);
+            console.log(response.data.thumbnailUrl);
+
+        });
+    }, []);
 
     return (
-        <li>
-            { detail.body } by <b>{detail.email}</b>
+        <li style={{"listStyle": "none"}}>
+            <img src={image} style={{"width":"4%","borderRadius": "15px", "verticalAlign":"middle"}}/> <b>{detail.email}</b> { detail.body }
         </li>
     );
 };

@@ -45,8 +45,6 @@ const Detail = (props) => {
         });
     }, []);
 
-
-
     return (
         <React.Fragment>
             <CssBaseline />
@@ -72,8 +70,9 @@ const Detail = (props) => {
                                             </Typography>
 
                                             <Typography component="h3" variant="h6">
-                                                Comments (Total: {comments.length})
+                                                {comments.length} Comments
                                             </Typography>
+                                            <hr/>
                                                 {
                                                     comments.map(comment =>  <Comment key={comment.id} detail={comment}/>)
                                                 }

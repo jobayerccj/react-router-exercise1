@@ -1,8 +1,5 @@
 import React from 'react';
-// import StarIcon from '@material-ui/icons/StarBorder';
-// import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,6 +9,7 @@ import About from "./components/About/About";
 import Users from "./components/Users/Users";
 import Home from "./components/Home/Home";
 import Detail from "./components/Detail/Detail";
+import NoMatch from "./components/NoMatch/NoMatch";
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -76,9 +74,6 @@ export default function App() {
 
     return (
         <Router>
-
-                {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
                 <Switch>
                     <Route path="/about">
                         <About />
@@ -91,13 +86,13 @@ export default function App() {
                         <Detail classes={classes} footers={footers}/>
                     </Route>
 
-                    <Route path="/">
+                    <Route exact path="/">
                         <Home classes={classes} footers={footers}/>
                     </Route>
+
+                    <Route component={NoMatch} />
                 </Switch>
-
         </Router>
-
 
     );
 }
